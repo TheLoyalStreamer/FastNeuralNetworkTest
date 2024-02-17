@@ -82,6 +82,8 @@ namespace NNetwork
 
         std::random_shuffle( m_entries.begin(), m_entries.end() );
 
+
+
         int32_t const numEntries = (int32_t) m_entries.size();
         int32_t const numTrainingEntries  = (int32_t) ( 0.6 * numEntries );
         int32_t const numGeneralizationEntries = (int32_t) ( ceil( 0.2 * numEntries ) );
@@ -90,6 +92,13 @@ namespace NNetwork
         for ( ; entryIdx < numTrainingEntries; entryIdx++ )
         {
             m_data.m_trainingSet.push_back( m_entries[entryIdx] );
+        }
+
+
+
+        for ( ; entryIdx < numTrainingEntries + numGeneralizationEntries; entryIdx++ )
+        {
+            m_data.m_generalizationSet.push_back( m_entries[entryIdx] );
         }
     }
 }
