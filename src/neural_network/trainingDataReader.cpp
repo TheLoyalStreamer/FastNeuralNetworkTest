@@ -15,8 +15,7 @@ namespace BPN
         assert(!filename.empty() && m_numInputs > 0 && m_numOutputs > 0)
     }
 
-    bool trainingDataReader::readData()
-    {
+    bool trainingDataReader::readData() {
         assert(!m_filename.empty());
 
         std::fstream inputFile;
@@ -28,11 +27,9 @@ namespace BPN
 
             int32_t const totalValuesToRead = m_numInputs + m_numOutputs;
 
-            while (!inputFile.eof())
-            {
+            while (!inputFile.eof()) {
                 std::getline(inputFile, line);
-                if (line.length() > 2)
-                {
+                if (line.length() > 2) {
                     m_entries.push_back(TrainingEntry());
                     TrainingEntry& entry = m_entries.back();
 
@@ -44,8 +41,7 @@ namespace BPN
                     char* nextToken = nullptr;
                     char* pToken = strtok_s(cstr, ",", &nextToken);
 
-                    while(pToken != nullptr && i < totalValuesToRead)
-                    {
+                    while(pToken != nullptr && i < totalValuesToRead) {
                         if (i < m_numInputs)
                         {
                             entry.m_inputs.push_back(atof(pToken));
@@ -64,7 +60,17 @@ namespace BPN
 
             inputFile.close();
 
-            // TODO: create data if not empty
+            if ( !m_entries.empty() )
+            {
+                // Create Data
+            }
+
+            std::cout << "Input file: " << m_filename << "\nRead complete: " << m_entries.size() << " inputs loaded" << std::endl;
+            return true;
+        }
+        else {
+            std::cout << "Error Opening Input File: " << m_filename << std::endl;
+            return false;
         }
 
         return true;
