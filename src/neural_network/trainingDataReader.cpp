@@ -5,7 +5,7 @@
 #include <iostream>
 #include <cstdint>
 
-namespace BPN
+namespace NNetwork
 {
     trainingDataReader::trainingDataReader(std::string const& filename, int32_t numInputs, int32_t numOutputs)
         : m_filename(filename)
