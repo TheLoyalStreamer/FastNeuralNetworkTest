@@ -4,21 +4,39 @@
 
 namespace NNetwork
 {
-    class TrainingDataReader {
-        public:
-            TrainingDataReader( std::string const& filename, int32_t numInputs, int32_t numOutputs );
+    class trainingDataReader
+    {
+    public:
 
-            bool ReadData();
+        TrainingDataReader(std::string const& filename, int32_t numInputs, int32_t numOutputs);
 
-            inline int32_t GetNumInputs() const { return m_numInputs; }
-            inline int32_t GetNumOutputs() const { return m_numOutputs; }
+        bool ReadData();
 
-            inline int32_t GetNumTrainingSets() const { return 0; }
+        inline int32_t GetNumInputs() const {
+            return m_numInputs;
+        }
+        inline int32_t GetNumOutputs() const {
+            return m_numOutputs;
+        }
 
-        private:
+        inline int32_t GetNumTrainingSets() const {
+            return 0;
+        }
+        TrainingData const& GetTrainingData() const {
+            return m_data;
+        }
 
-            std::string                     m_filename;
-            int32_t                         m_numInputs;
-            int32_t                         m_numOutputs;
+    private:
+
+        void CreateTrainingData();
+
+    private:
+
+        std::string                     m_filename;
+        int32_t                         m_numInputs;
+        int32_t                         m_numOutputs;
+
+        std::vector<TrainingEntry>      m_entries;
+        TrainingData                    m_data;
     };
 }

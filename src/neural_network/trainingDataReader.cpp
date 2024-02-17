@@ -62,7 +62,7 @@ namespace NNetwork
 
             if ( !m_entries.empty() )
             {
-                // Create Data
+                CreateTrainingData();
             }
 
             std::cout << "Input file: " << m_filename << "\nRead complete: " << m_entries.size() << " inputs loaded" << std::endl;
