@@ -75,4 +75,19 @@ namespace NNetwork
 
         return true;
     }
+
+    void TrainingDataReader::CreateTrainingData()
+    {
+        assert( !m_entries.empty() );
+
+        int32_t const numEntries = (int32_t) m_entries.size();
+        int32_t const numTrainingEntries  = (int32_t) ( 0.6 * numEntries );
+        int32_t const numGeneralizationEntries = (int32_t) ( ceil( 0.2 * numEntries ) );
+
+        int32_t entryIdx = 0;
+        for ( ; entryIdx < numTrainingEntries; entryIdx++ )
+        {
+            m_data.m_trainingSet.push_back( m_entries[entryIdx] );
+        }
+    }
 }
