@@ -80,6 +80,8 @@ namespace NNetwork
     {
         assert( !m_entries.empty() );
 
+        std::random_shuffle( m_entries.begin(), m_entries.end() );
+
         int32_t const numEntries = (int32_t) m_entries.size();
         int32_t const numTrainingEntries  = (int32_t) ( 0.6 * numEntries );
         int32_t const numGeneralizationEntries = (int32_t) ( ceil( 0.2 * numEntries ) );
